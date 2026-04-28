@@ -1,0 +1,300 @@
+/* ========================================
+   EVOLVE - ULTIMATE FINAL EDITION
+   ========================================
+*/
+
+:root {
+    --bg: #000000;
+    --bg-alt: #0a0a0a;
+    --accent: #ff0000; /* Neon Red */
+    --text: #ffffff;
+    --gray: #666;
+    --gray-light: #b3b3b3;
+    --card-bg: #111;
+    --nav-bg: rgba(0, 0, 0, 0.9);
+    --transition-fast: 0.3s ease;
+    --transition-slow: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- HEADER & NAVIGATION --- */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 25px 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+    transition: var(--transition-fast);
+    backdrop-filter: blur(8px);
+}
+
+.header.scrolled {
+    padding: 15px 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid #222;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: var(--transition-fast);
+}
+
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--accent); }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), 
+                url('image4.jpg'); /* ПЕРЕВІР НАЗВУ СВОГО ФОТО */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px; /* Опустили контент нижче від меню */
+}
+
+.hero h1 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--accent);
+    display: block;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+}
+
+/* --- BUTTONS --- */
+.hero-btns {
+    display: flex;
+    gap: 30px; /* Віддаляємо кнопки одну від одної */
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px; /* Відступ від тексту */
+}
+
+.btn {
+    padding: 18px 45px;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    transition: all 0.4s ease;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    min-width: 220px; /* Кнопки однакової стабільної ширини */
+}
+
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover {
+    background: white; color: black;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.7);
+    transform: translateY(-5px);
+}
+
+.btn-outline { border: 2px solid white; color: white; background: transparent; }
+.btn-outline:hover { background: white; color: black; transform: translateY(-5px); }
+
+/* --- STATS SECTION --- */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 120px 0;
+    border-bottom: 1px solid #111;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.stat-item { text-align: center; flex: 1 1 250px; }
+.stat-item h2 { font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--accent); }
+.stat-item p { color: var(--gray); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.8rem; }
+
+/* --- PROGRAMS SECTION (ВИРІВНЮВАННЯ ПОЛОСОК) --- */
+.programs { padding: 120px 0; }
+.section-title { font-family: 'Syncopate', sans-serif; text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 80px; text-transform: uppercase; }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: var(--card-bg);
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden;
+    transition: var(--transition-slow);
+}
+
+.card:hover { transform: translateY(-20px); }
+
+.card-img-wrapper { height: 400px; overflow: hidden; }
+.card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 1s ease; }
+.card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+.card-info {
+    padding: 40px;
+    border-bottom: 4px solid transparent;
+    transition: var(--transition-fast);
+    flex-grow: 1; /* Робить всі картки однакової висоти, щоб смужки були в лінію */
+}
+
+.card:hover .card-info { border-bottom: 4px solid var(--accent); }
+.card-info h3 { font-family: 'Syncopate', sans-serif; font-size: 1.4rem; margin-bottom: 15px; color: var(--accent); }
+.card-info p { color: #ccc; font-size: 0.95rem; }
+
+/* --- MOTIVATIONAL BANNER --- */
+.banner {
+    padding: 200px 0;
+    background: linear-gradient(rgba(255,0,0,0.25), rgba(0,0,0,0.85)),
+                url('image5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.banner h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* --- CONTACT SECTION (ВИПРАВЛЕНО RT ТА SELECT) --- */
+.contact { padding: 120px 0; background: var(--bg-alt); }
+.contact-box { max-width: 600px; margin: 0 auto; text-align: center; }
+
+.contact-box h2 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Більше місця між буквами, щоб "RT" не зливалися */
+}
+
+.form { display: flex; flex-direction: column; gap: 20px; margin-top: 50px; }
+
+.form input, .form select {
+    padding: 20px 25px; /* Однаковий відступ зліва */
+    background: #151515;
+    border: 1px solid #333;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.form select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 25px center; /* Стрілочка симетрично до тексту зліва */
+    background-size: 18px;
+    padding-right: 60px;
+    cursor: pointer;
+}
+
+.form input:focus, .form select:focus { outline: none; border-color: var(--accent); background: #1a1a1a; }
+
+/* --- FOOTER --- */
+.footer { padding: 80px 0; text-align: center; background: #000; border-top: 1px solid #1a1a1a; }
+.footer p { color: #444; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+
+/* --- MOBILE ADAPTIVITY --- */
+@media (max-width: 768px) {
+    .header { padding: 15px 0; height: auto; background: rgba(0,0,0,0.95); }
+    .nav { flex-direction: column; gap: 15px; }
+    .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { font-size: 0.7rem; }
+    .hero { background-attachment: scroll; padding-top: 120px; }
+    .hero h1 { font-size: 3rem; }
+    .btn { min-width: 100%; margin: 5px 0; }
+    .hero-btns { gap: 10px; }
+    .stats { flex-direction: column; gap: 50px; }
+    .banner { background-attachment: scroll; padding: 120px 20px; }
+    .grid-container { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+.reveal { opacity: 0; transform: translateY(40px); transition: 1.2s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
